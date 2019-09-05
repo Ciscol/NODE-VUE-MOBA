@@ -21,7 +21,17 @@
 ### 1. GIT  
 上github创建新仓库，创建时可以在初始化内容里勾选"Initialize this repository with a README"，并且添加.gitignore文件，选择类型为node，添加证书，我选了MIT。   
 
-然后新建项目文件夹，进vscode，git init一下。紧接着要用vscode的git去连接远程仓库，但是GitHub上这个项目里已经有master分支了，本地只能搞个新分支。
+然后新建项目文件夹，进vscode，git init一下。紧接着要用vscode的git去连接远程仓库，但是太复杂了，忘记这里该怎么做，最后还是偷了初始化文件之后重新搞了个空仓库再连接。
 
 ### 2. 初始化项目 
++ 使用vue-cli新建两个子项目:   
+  > vue create client   
+  > vue create admin   
 
+  如果在vscode的powershell不能使用vue命令就直接自己开cmd。
+
++ 初始化服务器项目
+  > cd server   
+  > npm init -y   
+
+  安装nodemon、
