@@ -36,9 +36,44 @@
 
   安装nodemon、element-ui
 
-## 后台管理 —— admin子项目
-使用element UI
-  > vue add element
-  > Fully...
-  > no
-  > zhcn
+# 后台管理 —— admin子项目
+### 1. 基础界面
+#### 引入element UI  
+  > vue add element  
+  > Fully...  
+  > no  
+  > zhcn  
+#### 引入router  
+  > vue add router  
+  > no  
+  封装于router.js
+#### 引入axios  
+  > 使用http.js封装axios，export http  
+  > 在main.js中将Vue原型的$http替换成http  
+
+### 2. 新建组件
+  > 1. CategoriesEdit    
+  > 集编辑和新建于一体   
+  > 2. CategoriesList   
+  > 展示分类列表   
+
+
+  
+
+
+
+# 服务端 —— server子项目
+  > cnmp i express@next mongoose cors  
+#### 路由模块  
+  > routes/admin  
+  > index.js中使用  
+#### 连接数据库模块  
+  > plugins/db  
+  > index.js中使用  
+#### 数据库模型  
+  > models/Category  // 分类数据集
+
+#### index.js中注册   
+  > app.use(express.json());  
+  > app.use(require('cors')());  
+
