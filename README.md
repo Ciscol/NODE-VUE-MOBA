@@ -34,4 +34,11 @@
   > cd server   
   > npm init -y   
 
-  安装nodemon、
+  安装nodemon、element-ui
+
+## 后台管理 —— admin子项目
+使用element UI
+  > vue add element
+  > Fully...
+  > no
+  > zhcn
