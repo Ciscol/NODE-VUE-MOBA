@@ -1,14 +1,18 @@
 <template>
   <div class>
-    <h1>CATEGORY List</h1>
+    <h1>ITEM List</h1>
     <el-table :data="items">
-      <el-table-column prop="_id" label="Class ID" width="250"></el-table-column>
-      <el-table-column prop="parent.name" label="Parent Class" width="250"></el-table-column>
-      <el-table-column prop="name" label="Class name" width="250"></el-table-column>
+      <el-table-column prop="_id" label="Item ID" width="250"></el-table-column>
+      <el-table-column label="Icon" width="250">
+        <template slot-scope="scope">
+          <img :src="scope.row.icon" alt style="height:3rem;" />
+        </template>
+      </el-table-column>
+      <el-table-column prop="name" label="Item name" width="250"></el-table-column>
       <el-table-column fixed="right" label="操作" width="250">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="editClass(scope.row._id)">编辑</el-button>
-          <el-button type="danger" size="small" @click="removeClass(scope.row, index)">删除</el-button>
+          <el-button type="primary" size="small" @click="editItem(scope.row._id)">编辑</el-button>
+          <el-button type="danger" size="small" @click="removeItem(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -24,21 +28,20 @@ export default {
   },
   methods: {
     async fetch() {
-      var res = await this.$http.get("categories");
+      const res = await this.$http.get("rest/items");
       this.items = res.data;
     },
-    editClass(id) {
-      this.$router.push(`/categories/edit/${id}`);
+    editItem(id) {
+      this.$router.push(`/items/edit/${id}`);
     },
-    async removeClass(row, index) {
-      console.log(index);
-      this.$confirm(`删除分类 "${row.name}"`, "提示", {
+    async removeItem(row) {
+      this.$confirm(`删除物品 "${row.name}"`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       })
         .then(async () => {
-          await this.$http.delete(`categories/${row._id}`);
+          await this.$http.delete(`rest/items/${row._id}`);
           this.$message({
             type: "success",
             message: "删除成功!"

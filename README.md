@@ -1,3 +1,7 @@
+# USAGE
+/server> npm run serve
+
+
 # NODE + VUE 移动端web 全栈
 
 跟着B站up[全栈之巅](https://space.bilibili.com/341919508)做的项目。之前已经把web前端后端技能差不多都学了一遍，这次就利用这个项目来从头到尾复习一遍。
@@ -51,14 +55,13 @@
   > 使用http.js封装axios，export http  
   > 在main.js中将Vue原型的$http替换成http  
 
-### 2. 新建组件
+### 2. 新建分类管理组件
   > 1. CategoriesEdit    
   > 集编辑和新建于一体   
   > 2. CategoriesList   
   > 展示分类列表   
-
-
-  
+### 3. 新建物品管理组件
+  基本和分类管理差不多，但是多了一个图片上传的实现，可以在element中直接找，将url修改成服务器地址，在服务器中添加一个新的接口用于处理上传文件，使用multer插件。上传成功后记得返回一个图片url给前端页面。
 
 
 
@@ -77,3 +80,5 @@
   > app.use(express.json());  
   > app.use(require('cors')());  
 
+#### 接口使用通用模型
+  将请求的资源模型设置成URL参数resource，根据resource动态选择具有相同增删改查的数据库模型们

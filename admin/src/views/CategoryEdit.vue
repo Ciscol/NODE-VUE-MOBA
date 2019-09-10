@@ -21,36 +21,36 @@
 export default {
   data() {
     return {
-      model: {
-        name: "",
-        parent: ""
-      },
+      model: {},
       parents: []
     };
   },
   methods: {
     async save() {
-      if (this.model.name.trim().length == 0) {
+      if (!this.model.name || this.model.name.trim().length == 0) {
         return;
       }
-      var res;
+      var res = null;
       if (this.id) {
-        res = await this.$http.put(`categories/${this.id}`, this.model);
+        res = await this.$http.put(`rest/categories/${this.id}`, this.model);
       } else {
-        res = await this.$http.post("categories", this.model);
+        res = await this.$http.post("rest/categories", this.model);
       }
       this.$router.push("/categories/list");
-      this.$message({
-        type: "success",
-        message: "save success"
-      });
+      if (res.status >= 200 && res.status < 300) {
+        this.$message({
+          type: "success",
+          message: "save success"
+        });
+        //  } else {
+      }
     },
     async fetch() {
-      var res = await this.$http.get(`categories/${this.id}`);
+      const res = await this.$http.get(`rest/categories/${this.id}`);
       this.model = res.data;
     },
     async fetchParents() {
-      var res = await this.$http.get(`categories`);
+      const res = await this.$http.get(`rest/categories`);
       this.parents = res.data;
     }
   },
@@ -59,7 +59,7 @@ export default {
     this.id && this.fetch();
   },
   props: {
-    id: ""
+    id: {}
   }
 };
 </script>
