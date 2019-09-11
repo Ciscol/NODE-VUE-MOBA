@@ -1,14 +1,14 @@
 <template>
   <div class>
-    <h1>ITEM List</h1>
+    <h1>装备列表</h1>
     <el-table :data="items">
-      <el-table-column prop="_id" label="Item ID" width="250"></el-table-column>
-      <el-table-column label="Icon" width="250">
+      <el-table-column prop="_id" label="ID" width="250"></el-table-column>
+      <el-table-column label="图标" width="250">
         <template slot-scope="scope">
           <img :src="scope.row.icon" alt style="height:3rem;" />
         </template>
       </el-table-column>
-      <el-table-column prop="name" label="Item name" width="250"></el-table-column>
+      <el-table-column prop="name" label="名称" width="250"></el-table-column>
       <el-table-column fixed="right" label="操作" width="250">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="editItem(scope.row._id)">编辑</el-button>
