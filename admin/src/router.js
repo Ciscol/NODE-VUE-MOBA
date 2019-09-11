@@ -14,6 +14,9 @@ import HeroList from './views/HeroList.vue'
 import ArticleEdit from './views/ArticleEdit.vue'
 import ArticleList from './views/ArticleList.vue'
 
+import AdEdit from './views/AdEdit.vue'
+import AdList from './views/AdList.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,7 +40,11 @@ export default new Router({
 
         { path: '/articles/create', name: 'articlesCreate', component: ArticleEdit },
         { path: '/articles/edit/:id', name: 'articlesEdit', component: ArticleEdit, props: true },
-        { path: '/articles/list', name: 'articlesList', component: ArticleList }
+        { path: '/articles/list', name: 'articlesList', component: ArticleList },
+
+        { path: '/ads/create', name: 'adsCreate', component: AdEdit },
+        { path: '/ads/edit/:id', name: 'adsEdit', component: AdEdit, props: true },
+        { path: '/ads/list', name: 'adsList', component: AdList },
       ]
     },
   ]
