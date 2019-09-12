@@ -17,8 +17,8 @@
         </el-upload>
       </el-form-item>
 
-      <el-tabs type="border-card" value="skills">
-        <el-tab-pane label="基础信息">
+      <el-tabs type="border-card" value="basicMsg">
+        <el-tab-pane label="基础信息" name="basicMsg">
           <el-form-item label="称号" label-width="120px">
             <el-input v-model="model.title" placeholder="请输入"></el-input>
           </el-form-item>

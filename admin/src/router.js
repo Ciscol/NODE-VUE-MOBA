@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
+import Login from './views/Login.vue'
 import Main from './views/Main.vue'
 import CategoryEdit from './views/CategoryEdit.vue'
 import CategoryList from './views/CategoryList.vue'
@@ -17,12 +17,17 @@ import ArticleList from './views/ArticleList.vue'
 import AdEdit from './views/AdEdit.vue'
 import AdList from './views/AdList.vue'
 
+import AdminUserEdit from './views/AdminUserEdit.vue'
+import AdminUserList from './views/AdminUserList.vue'
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
+    { path: '/', redirect: '/login' },
+    { path: '/login', name: 'login', component: Login, meta: { isPublic: true } },
     {
-      path: '/',
+      path: '/main',
       name: 'main',
       component: Main,
       children: [
@@ -45,7 +50,21 @@ export default new Router({
         { path: '/ads/create', name: 'adsCreate', component: AdEdit },
         { path: '/ads/edit/:id', name: 'adsEdit', component: AdEdit, props: true },
         { path: '/ads/list', name: 'adsList', component: AdList },
+
+        { path: '/admin_users/create', name: 'admin_usersCreate', component: AdminUserEdit },
+        { path: '/admin_users/edit/:id', name: 'admin_usersEdit', component: AdminUserEdit, props: true },
+        { path: '/admin_users/list', name: 'admin_usersList', component: AdminUserList },
       ]
     },
   ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next('/login');
+  }
+  next();
+})
+
+export default router;
