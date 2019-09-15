@@ -84,8 +84,8 @@
 ### admin客户端基本结束
 
 
-# 用户客户端 —— client子项目
-  由于涉及工具类，所以使用scss，需要安装sass和sass-loader，sass-loader可能有相关依赖(node-sass,fibers)，看提示信息操作即可。   
+# 用户客户端 —— web子项目
+  由于涉及工具类，所以使用scss，需要安装sass和sass-loader，sass-loader。   
   webpack似乎能自动添加浏览器兼容前缀？暂时没有过多研究，但是这个自动生成的项目打包后确实会自带浏览器前缀。
 ## 基本样式设置
 ### 1. 样式重置
@@ -95,7 +95,61 @@
 ### 3. 通用flex定义
 ### 4. 常用Margin，Padding定义
   类似bootstrap
+### 5. 心得
+  虽然看起来很厉害，但是实际用起来根本不方便，我们有很多优秀成熟的工具类可以用，干嘛自己定义。  
+  把布局数据在这里定义死了肯定不行的，不过类似于颜色这种常常用到的倒是可以用这中方法。   
+  相结合吧。
+  #### 出现了一个问题：
+  一直是在vue-cli-service运行的情况下配置的，一路走下来也没什么问题，但是当我重启服务器后就出现ERROR了，落泪。
+  <code>  
+ERROR  Failed to compile with 1 errors                                                                         19:28:43  
+error  in ./src/views/Main.vue?vue&type=style&index=0&id=c1f1971a&lang=scss&scoped=true&     
+   
+Module build failed (from ./node_modules/_sass-loader@8.0.0@sass-loader/dist/cjs.js):   
+ValidationError: Invalid options object. Sass Loader has been initialised using an options object that does not match the API schema.   
+ - options has an unknown property 'fiber'. These properties are valid:   
+   object { implementation?, sassOptions?, prependData?, sourceMap?, webpackImporter? }   
+    at validate (F:\MyWorkSpace\NODE_VUE_MOBA\web\node_modules\_schema-utils@2.2.0@schema-utils\dist\validate.js:49:11)   
+    at Object.loader (F:\MyWorkSpace\NODE_VUE_MOBA\web\node_modules\_sass-loader@8.0.0@sass-loader\dist\index.js:36:28)   
+  </code>
 
+  说到底就是sass还是scss的编译出了问题，虽然对于“一开始为什么没出错重启就出错”这个事有点迷惑，不过还是尝试解决这个问题：   
+  百度一下：segmentfault上面还真有这个问题，回答是4天前（2019/9/11）的 : [segmentfault](https://segmentfault.com/q/1010000020343645/a-1020000020352930)，大致回答是把vue.config.js里头的scss配置里data改成prependData。
+
+  但是这项目里本来就没有vue.congfig.js，查阅文档得知vue.config.js是根目录下的可选配置文件，按照文档说明配置完：   
+  <code>
+// vue.config.js   
+const fs = require('fs')   
+module.exports = {   
+&nbsp;css: {   
+&nbsp;&nbsp;loaderOptions: {   
+&nbsp;&nbsp;&nbsp;scss: {   
+&nbsp;&nbsp;&nbsp;&nbsp;data: `@import "~@/style.scss";`   
+&nbsp;&nbsp;&nbsp;}   
+&nbsp;&nbsp;}   
+&nbsp;}   
+}  
+  </code>
+  果然不行！那么把里面的data改成prependData试一下，果然可以了！
+
+  #### 总结
+  1. 根目录下添加vue.config.js  
+<code>
+// vue.config.js  
+const fs = require('fs')  
+module.exports = {   
+&nbsp;css: {   
+&nbsp;loaderOptions: {   
+&nbsp;&nbsp;&nbsp;scss: {   
+&nbsp;&nbsp;&nbsp;&nbsp;prependData: `@import "~@/style.scss";`  // '@/'是'src/'的别称   
+&nbsp;&nbsp;&nbsp;}   
+&nbsp;&nbsp;}   
+&nbsp;}   
+}   
+</code>
+   
+    
+    
 ## 写页面
 ### 1.首页 
 
