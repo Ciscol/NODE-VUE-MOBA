@@ -1,4 +1,4 @@
-/* mongoDB数据模型 */
+/* mongoDB数据模型 —— 英雄信息 */
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({

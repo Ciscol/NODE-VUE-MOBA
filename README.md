@@ -136,7 +136,7 @@ module.exports = {
   #### 总结
   1. 根目录下添加vue.config.js  
 <code>
-// vue.config.js  
+// vue.config.js    
 const fs = require('fs')  
 module.exports = {   
 &nbsp;css: {   

@@ -1,4 +1,4 @@
-/* mongoDB数据模型 */
+/* mongoDB数据模型 —— 管理员用户 */
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({

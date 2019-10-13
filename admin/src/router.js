@@ -1,3 +1,4 @@
+/* 路由分发 */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
@@ -59,7 +60,7 @@ const router = new Router({
   ]
 })
 
-
+/* 路由监听，检查token是否存在 */
 router.beforeEach((to, from, next) => {
   if (!to.meta.isPublic && !localStorage.token) {
     return next('/login');
