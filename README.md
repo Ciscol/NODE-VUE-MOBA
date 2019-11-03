@@ -101,7 +101,10 @@
   把布局数据在这里定义死了肯定不行的，不过类似于颜色这种常常用到的倒是可以用这中方法。   
   相结合吧。
   #### 出现了一个问题：
-  一直是在vue-cli-service运行的情况下配置的，一路走下来也没什么问题，但是当我重启服务器后就出现ERROR了，落泪。
+  更新：
+    WTF！当时因为笔面试频繁，无暇顾及该项目，于是解决完这个问题之后便暂停了。当我十几天后重新运行该项目时，vue.config.js居然不被需要了！也就是上次的error消失了！什么鬼！
+  原：
+    一直是在vue-cli-service运行的情况下配置的，一路走下来也没什么问题，但是当我重启服务器后就出现ERROR了，落泪。
   <code>  
 ERROR  Failed to compile with 1 errors                                                                         19:28:43  
 error  in ./src/views/Main.vue?vue&type=style&index=0&id=c1f1971a&lang=scss&scoped=true&     
@@ -153,6 +156,7 @@ module.exports = {
     
 ## 写页面
 ### 1.首页 
+轮播图使用GitHub上的vue-awesome-swiper，自己改一改样式就好
 
 
 

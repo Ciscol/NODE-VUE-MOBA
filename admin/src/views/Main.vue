@@ -1,7 +1,10 @@
 <template>
   <el-container style="height: 100vh">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router :default-openeds="['3']" unique-opened :default-active="$route.path">
+      <!-- <el-menu router :default-openeds="['3']" unique-opened :default-active="$route.path"> -->
+      <!-- 如果设置了default-openeds，那么每一次点击菜单后，都会回到原来的default-open -->
+      <!-- 可以把数组在data中动态定义以解决该问题。但是暂时不管了 -->
+      <el-menu router unique-opened :default-active="$route.path">  
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-message"></i>内容管理

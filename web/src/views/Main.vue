@@ -12,14 +12,22 @@
     </div>
 
     <nav class="main-nav bg-primary">
-      <router-link to="/" tag="div" class="main-nav-item .active">首页</router-link>
-      <router-link to="/" tag="div" class="main-nav-item">攻略中心</router-link>
-      <router-link to="/" tag="div" class="main-nav-item">赛事中心</router-link>
+      <ul>
+        <router-link to="/home" tag="li" class="main-nav-item">
+          <span>首页</span>
+        </router-link>
+        <router-link to="/" tag="li" class="main-nav-item">
+          <span>攻略中心</span>
+        </router-link>
+        <router-link to="/" tag="li" class="main-nav-item">
+          <span>赛事中心</span>
+        </router-link>
+      </ul>
     </nav>
 
-    <!-- <div id="main">
+    <div id="main">
       <router-view></router-view>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -35,15 +43,17 @@
   width: 100%;
   z-index: 20;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  // justify-content: space-around;
+  // align-items: center;
 
   img {
-    margin-left: 0.9375rem;
+    margin-top: 0.5rem;
+    margin-left: 1.0625rem;
   }
 
   .logo-title {
-    margin-left: 10px;
+    margin-top: 0.5rem;
+    margin-left: 0.625rem;
     flex: 1;
     h1 {
       color: #fff;
@@ -59,29 +69,43 @@
     }
   }
   .btn {
+    width: 3.75rem;
+    height: 1.5rem;
     border: 0;
     border-radius: 0.125rem;
     font-size: 0.625rem;
     padding: 0.4063rem 0.5rem;
+    margin-top: 0.5625rem;
     margin-right: 0.9375rem;
   }
 }
 
 .main-nav {
-  margin-top: 45px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  margin-top: 2.8125rem;
   color: #fff;
-  font-size: 13px;
-  height: 42px;
+  font-size: 0.8125rem;
+  height: 2.625rem;
+
+  ul {
+    height: 100%;
+  }
 
   .main-nav-item {
-    padding: 2px 0;
-    border-bottom: 3px solid transparent;
+    display: list-item;
+    width: 33.33333%;
+    height: 2.625rem;
+    float: left;
+    line-height: 2.625rem;
+    text-align: center;
 
-    &.active {
-      border-bottom: 3px solid white;
+    span {
+      padding-bottom: 2px;
+      border-bottom: 3px solid rgba($color: #000000, $alpha: 0);
+    }
+    &.router-link-exact-active {
+      span {
+        border-bottom: 3px solid white;
+      }
     }
   }
 }
